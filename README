@@ -1,0 +1,14 @@
+sudo apt install libglew-dev
+sudo apt install libopencv-dev
+
+cd Pangolin
+mkdir build
+cd build
+cmake ..
+make
+
+cd ../..
+mkdir build
+cd build
+cmake ..
+make
