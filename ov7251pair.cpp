@@ -233,7 +233,7 @@ bool Ov7251pair::GetSensorSerial(ModuleSelect sensor, std::string& s) {
         too_many_zeros = true;
     }
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
-  } while ((too_many_zeros || ((bytes.back() & 0x01) == 0)) && (cnt > 0));
+  } while ((too_many_zeros || ((bytes.back() & 0x03) == 0)) && (cnt > 0));
 
   if ((cnt == 0) || !success) {
     s = "";

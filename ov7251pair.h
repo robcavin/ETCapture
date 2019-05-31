@@ -25,7 +25,7 @@ class Ov7251pair : public Ov580Sensors {
   constexpr static uint8_t EL_ANALOGGAIN_ID_B = 3;
   constexpr static uint8_t EL_EXPTIMEH_ID = 7;
   constexpr static uint8_t EL_EXPTIMEL_ID = 8;
-  constexpr static int MAX_CONSECUTIVE_ZEROS_IN_SERIAL = 10;
+  constexpr static int MAX_CONSECUTIVE_ZEROS_IN_SERIAL = 21;
 
   constexpr static uint8_t SCCBADDR_7251 = 0xC0;
   constexpr static uint8_t SCCBADDR_7750 = 0xC0;
