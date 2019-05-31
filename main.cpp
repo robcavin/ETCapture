@@ -25,8 +25,7 @@ int main() {
 
     cvSetMouseCallback("ETCapture", mouseCallback);
 
-    auto target = cv::imread("../target.png");
-    cv::resize(target,target,cv::Size(64,64));
+    auto target = cv::imread("../target.png", cv::IMREAD_GRAYSCALE);
 
     surreal::RegisterOv580VideoFactory();
     pangolin::VideoInput video;
@@ -60,7 +59,9 @@ int main() {
 
         cv::Mat background(window_size.height, window_size.width, CV_8U, cv::Scalar(127));
         cv::Rect rect(mouse_x - target.size().width/2,mouse_y - target.size().height/2, target.size().width, target.size().height);
-        background(rect & cv::Rect({0,0},window_size)) = 0;
+        if ((rect & cv::Rect({0,0},window_size)) == rect)
+        //background(rect & cv::Rect({0,0},window_size)) = target;
+            target.copyTo(background(rect));
         cv::imshow("ETCapture",background);
         cv::waitKey(20);
 
@@ -70,7 +71,8 @@ int main() {
             cv::imwrite(filename, eye_image);
             sprintf(filename, "img%06d.json", image_number);
             auto file = fopen(filename, "w+");
-            fprintf(file, "{\"pt\":[%d,%d]}", mouse_x, mouse_y);
+            fprintf(file, "{\"pt\":[%d,%d]}\n", mouse_x, mouse_y);
+            fclose(file);
             image_number++;
         }
     }
