@@ -4,7 +4,7 @@
 #include <opencv2/highgui.hpp>
 
 void mouseCallback(int event, int x, int y, int flags, void *userdata) {
-    
+
 }
 
 int main() {
